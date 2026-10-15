@@ -12,8 +12,9 @@ progress dialog, then restarts the app (Android) or tells the user to reopen it
 ```yaml
 dependencies:
   shorebird_update_ui:
-    path: packages/shorebird_update_ui
-  # or: git: { url: https://github.com/you/repo, path: packages/shorebird_update_ui }
+    git:
+      url: https://github.com/hamdy-dawood/shorebird_update_ui.git
+      ref: main
 ```
 
 **2. Disable Shorebird's silent auto-update** in `shorebird.yaml`:
