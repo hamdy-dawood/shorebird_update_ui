@@ -131,4 +131,37 @@ void main() {
 
     controller.dispose();
   });
+
+  testWidgets('hides countdown text and button when countdown is less than 2',
+      (tester) async {
+    final controller = FakeUpdateController(
+      config: const ShorebirdUpdateConfig(
+        simulatedDuration: Duration(milliseconds: 100),
+        autoRestartCountdown: Duration(seconds: 1),
+      ),
+      checkDelay: const Duration(milliseconds: 10),
+      downloadDuration: const Duration(milliseconds: 20),
+      platform: TargetPlatform.android,
+    );
+    addTearDown(controller.dispose);
+
+    await tester.pumpWidget(MaterialApp(
+      home: const SizedBox(),
+      builder: (context, child) => ShorebirdUpdateListener(
+        controller: controller,
+        strings: UpdateStrings.en,
+        child: child!,
+      ),
+    ));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pump(const Duration(milliseconds: 350));
+
+    expect(find.text('Update ready!'), findsOneWidget);
+    expect(find.text('Restart now'), findsNothing);
+    expect(find.textContaining('Restarting in'), findsNothing);
+
+    controller.dispose();
+  });
 }

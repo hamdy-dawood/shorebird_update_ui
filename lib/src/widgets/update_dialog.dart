@@ -193,12 +193,14 @@ class _ReadyContent extends StatelessWidget {
           const SizedBox(height: 8),
           _Step(number: 2, text: strings.step2),
         ] else ...[
-          if (seconds != null && seconds > 0) ...[
-            const SizedBox(height: 16),
-            Text(
-              strings.restartingIn.replaceAll('{seconds}', '$seconds'),
-              style: theme.textTheme.labelLarge?.copyWith(color: scheme.primary),
-            ),
+          if (seconds != null) ...[
+            if (seconds >= 2) ...[
+              const SizedBox(height: 16),
+              Text(
+                strings.restartingIn.replaceAll('{seconds}', '$seconds'),
+                style: theme.textTheme.labelLarge?.copyWith(color: scheme.primary),
+              ),
+            ],
           ] else ...[
             const SizedBox(height: 20),
             SizedBox(
