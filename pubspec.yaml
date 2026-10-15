@@ -1,0 +1,19 @@
+name: shorebird_update_ui
+description: Drop-in, non-dismissible Shorebird (code push) update dialog with progress and restart handling. No state-management dependency.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.9.2
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shorebird_code_push: ^2.0.0
+  restart_app: ^1.10.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
