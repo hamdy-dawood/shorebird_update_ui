@@ -194,20 +194,21 @@ class _ReadyContent extends StatelessWidget {
           _Step(number: 2, text: strings.step2),
         ] else ...[
           if (seconds != null && seconds > 0) ...[
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
             Text(
               strings.restartingIn.replaceAll('{seconds}', '$seconds'),
               style: theme.textTheme.labelLarge?.copyWith(color: scheme.primary),
             ),
-          ],
-          const SizedBox(height: 20),
-          SizedBox(
-            width: double.infinity,
-            child: FilledButton(
-              onPressed: controller.isRestarting ? null : controller.restartNow,
-              child: Text(strings.restartNow,style: TextStyle(fontSize: 14),),
+          ] else ...[
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: controller.isRestarting ? null : controller.restartNow,
+                child: Text(strings.restartNow, style: const TextStyle(fontSize: 14)),
+              ),
             ),
-          ),
+          ],
         ],
         if (controller.isDismissible) ...[
           const SizedBox(height: 4),

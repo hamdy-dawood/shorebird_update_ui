@@ -99,4 +99,36 @@ void main() {
     expect(find.text('Restart now'), findsNothing);
     expect(find.text('Open it again'), findsOneWidget);
   });
+
+  testWidgets('hides restart button when countdown is active', (tester) async {
+    final controller = FakeUpdateController(
+      config: const ShorebirdUpdateConfig(
+        simulatedDuration: Duration(milliseconds: 100),
+        autoRestartCountdown: Duration(seconds: 10),
+      ),
+      checkDelay: const Duration(milliseconds: 10),
+      downloadDuration: const Duration(milliseconds: 20),
+      platform: TargetPlatform.android,
+    );
+    addTearDown(controller.dispose);
+
+    await tester.pumpWidget(MaterialApp(
+      home: const SizedBox(),
+      builder: (context, child) => ShorebirdUpdateListener(
+        controller: controller,
+        strings: UpdateStrings.en,
+        child: child!,
+      ),
+    ));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+    await tester.pump(const Duration(seconds: 1));
+    await tester.pump(const Duration(seconds: 1));
+
+    expect(find.text('Update ready!'), findsOneWidget);
+    expect(find.text('Restart now'), findsNothing);
+    expect(find.textContaining('Restarting in'), findsOneWidget);
+
+    controller.dispose();
+  });
 }

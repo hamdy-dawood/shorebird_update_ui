@@ -286,6 +286,7 @@ class UpdateController extends ChangeNotifier {
 
   @override
   void dispose() {
+    if (_disposed) return;
     _disposed = true;
     _progressTimer?.cancel();
     _countdownTimer?.cancel();
