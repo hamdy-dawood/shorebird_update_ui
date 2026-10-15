@@ -66,7 +66,7 @@ class UpdateStrings {
     step1: 'أغلق التطبيق بالكامل من قائمة التطبيقات الأخيرة',
     step2: 'افتحه مرة أخرى',
     restartNow: 'إعادة التشغيل الآن',
-    restartingIn: 'إعادة التشغيل خلال {seconds}...',
+    restartingIn: 'إعادة التشغيل خلال {seconds}',
     later: 'لاحقًا',
     errorTitle: 'فشل التحديث',
     errorMessage: 'تعذر تنزيل التحديث. حاول مرة أخرى لاحقًا.',
